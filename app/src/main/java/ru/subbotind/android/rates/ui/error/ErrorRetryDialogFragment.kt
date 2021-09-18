@@ -20,12 +20,6 @@ class ErrorRetryDialogFragment : DialogFragment() {
 
     private var errorMessage: String? = null
 
-    private val retryButtonClickListener: OnRetryButtonClickListener
-        get() = targetFragment as OnRetryButtonClickListener
-
-    private val cancelButtonClickListener: OnCancelButtonClickListener
-        get() = targetFragment as OnCancelButtonClickListener
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         errorMessage = arguments?.getString(ERROR_MESSAGE)
@@ -34,13 +28,19 @@ class ErrorRetryDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireActivity())
             .setTitle(R.string.error_dialog_title)
-            .setMessage(errorMessage ?: "")
+            .setMessage(errorMessage ?: getString(R.string.unexpected_error_text))
             .setPositiveButton(R.string.retry_button) { dialog, _ ->
-                retryButtonClickListener.onRetryButtonClick()
+                parentFragmentManager.setFragmentResult(
+                    ErrorDialogResult.RESULT_KEY,
+                    bundleOf(ErrorDialogResult.BUNDLE_KEY to ErrorDialogResult.Result.POSITIVE_BUTTON_CLICKED.name)
+                )
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.cancel_button) { dialog, _ ->
-                cancelButtonClickListener.onCancelButtonClick()
+                parentFragmentManager.setFragmentResult(
+                    ErrorDialogResult.RESULT_KEY,
+                    bundleOf(ErrorDialogResult.BUNDLE_KEY to ErrorDialogResult.Result.NEGATIVE_BUTTON_CLICKED.name)
+                )
                 dialog.dismiss()
             }
             .create()

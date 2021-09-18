@@ -1,4 +1,4 @@
-package ru.subbotind.android.rates.ui
+package ru.subbotind.android.rates.ui.calculation
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import ru.subbotind.android.rates.R
 import ru.subbotind.android.rates.databinding.FragmentCalculationBinding
 import ru.subbotind.android.rates.presentation.CalculationViewModel
@@ -15,6 +16,7 @@ private const val FROM_CUR_PARAM = "fromCur"
 const val RATE_PARAM = "rate"
 const val NOMINAL_PARAM = "nominal"
 
+@AndroidEntryPoint
 class CalculationFragment : Fragment() {
 
     companion object {
@@ -68,20 +70,23 @@ class CalculationFragment : Fragment() {
         binding.btnCalculate.setOnClickListener {
             val amount: Int? = binding.tiedAmount.text.toString().toIntOrNull()
 
-            amount?.let {
-                calculationViewModel.calculate(amount)
-            }
+            amount?.let { calculationViewModel.calculate(amount) }
                 ?: calculationViewModel.calculate(ZERO_AMOUNT)
         }
     }
 
     private fun initView() {
-        binding.tvCurrentRate.text =
-            getString(R.string.current_rate_text, nominal.toString(), fromCur, rate.toString())
+        binding.apply {
+            tvCurrentRate.text =
+                getString(R.string.current_rate_text, nominal.toString(), fromCur, rate.toString())
+
+            tvSelectedCurrencyPairHeader.text =
+                getString(R.string.current_currency_pair_header_string, fromCur)
+        }
     }
 
-    private fun showTotalAmount(amount: String) {
-        binding.tvTotalAmount.text = getString(R.string.total_amount_text, amount, fromCur)
+    private fun showTotalAmount(formattedAmount: String) {
+        binding.tvTotalAmount.text = getString(R.string.total_amount_text, formattedAmount, fromCur)
     }
 
     override fun onDestroyView() {

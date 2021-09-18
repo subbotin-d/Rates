@@ -1,11 +1,12 @@
 package ru.subbotind.android.rates.ui.rates
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ru.subbotind.android.rates.R
 import ru.subbotind.android.rates.databinding.RateItemBinding
 import ru.subbotind.android.rates.domain.entity.Rate
 
@@ -38,20 +39,44 @@ class RateViewHolder private constructor(
         }
     }
 
-    private var rate: Rate? = null
+    private lateinit var rate: Rate
 
     init {
         binding.root.setOnClickListener {
-            rateClickListener(rate?.code!!, rate?.value!!, rate?.nominal!!)
+            rateClickListener(rate.code, rate.value, rate.nominal)
         }
     }
 
-    @SuppressLint("SetTextI18n")
     fun bind(rate: Rate) {
         this.rate = rate
 
         binding.apply {
-            tvRate.text = "${rate.nominal} ${rate.code} = ${rate.value} RUB"
+            tvRate.text = itemView.resources.getString(
+                R.string.current_rate_text,
+                rate.nominal.toString(),
+                rate.code,
+                rate.value.toString()
+            )
+
+            tvRateDifference.text = rate.change.toString()
+
+            if (rate.change >= 0) {
+                ivRateChanges.setImageResource(R.drawable.ic_baseline_arrow_drop_up_24)
+                tvRateDifference.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.green
+                    )
+                )
+            } else {
+                ivRateChanges.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24)
+                tvRateDifference.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.red
+                    )
+                )
+            }
         }
     }
 }

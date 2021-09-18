@@ -2,12 +2,14 @@
     <string name="app_name">Rates</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="calculate_text">Рассчитать</string>
-    <string name="total_to_pay_text">К оплате</string>
-    <string name="amount_hint_text">Сумма</string>
+    <string name="total_to_pay_text">К получению:</string>
+    <string name="amount_hint_text">Сумма в рублях</string>
     <string name="current_rate_header_text">Текущий курс</string>
+    <string name="current_rates_header_text">Текущие курсы</string>
 
     <string name="total_amount_text">%1$s %2$s</string>
     <string name="current_rate_text">%1$s %2$s = %3$s RUB</string>
+    <string name="current_currency_pair_header_string">%1$s-RUB</string>
 
     <string name="retry_button">Try again!</string>
     <string name="cancel_button">Cancel</string>

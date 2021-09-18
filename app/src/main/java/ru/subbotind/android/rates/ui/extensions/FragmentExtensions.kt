@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import ru.subbotind.android.rates.ui.error.ErrorRetryDialogFragment
 
 fun Fragment.showRetryErrorDialog(message: String) {
-    val defaultDialogRequestCode = 0
     val errorDialogFragment = ErrorRetryDialogFragment.newInstance(message)
 
     parentFragmentManager.let {
@@ -13,6 +12,4 @@ fun Fragment.showRetryErrorDialog(message: String) {
             ErrorRetryDialogFragment::class.java.simpleName
         )
     }
-
-    errorDialogFragment.setTargetFragment(this, defaultDialogRequestCode)
 }

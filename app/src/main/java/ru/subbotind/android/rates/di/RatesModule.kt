@@ -7,10 +7,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.create
-import ru.subbotind.android.rates.data.RateRepositoryImpl
-import ru.subbotind.android.rates.data.dao.RateDao
-import ru.subbotind.android.rates.data.database.RatesDataBase
 import ru.subbotind.android.rates.data.network.RateService
+import ru.subbotind.android.rates.data.repository.RateRepositoryImpl
 import ru.subbotind.android.rates.domain.repository.RateRepository
 import javax.inject.Singleton
 
@@ -21,13 +19,8 @@ interface RatesModule {
     companion object {
         @Provides
         @Singleton
-        fun provideMovieService(retrofit: Retrofit): RateService =
+        fun provideRateService(retrofit: Retrofit): RateService =
             retrofit.create()
-
-        @Provides
-        @Singleton
-        fun provideRateDao(ratesDataBase: RatesDataBase): RateDao =
-            ratesDataBase.ratesDao()
     }
 
     @Binds

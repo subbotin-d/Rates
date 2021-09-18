@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Rates" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Rates" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -16,8 +17,7 @@
 
     <style name="Header1">
         <item name="android:fontFamily">@font/roboto_black</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">@dimen/text_spacing_huge</item>
+        <item name="android:textSize">@dimen/text_spacing_gigantic</item>
         <item name="android:letterSpacing">-0.01</item>
         <item name="android:textColor">@color/light_gray</item>
         <item name="lineHeight">@dimen/line_height_huge</item>
@@ -25,17 +25,21 @@
 
     <style name="Header2">
         <item name="android:fontFamily">@font/roboto_black</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">@dimen/text_spacing_big</item>
-        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textSize">@dimen/text_spacing_huge</item>
         <item name="android:textColor">@color/light_gray</item>
-        <item name="lineHeight">@dimen/line_height_huge</item>
+        <item name="lineHeight">@dimen/line_height_regular</item>
     </style>
 
-    <style name="Body1">
-        <item name="android:fontFamily">@font/roboto_black</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">@dimen/text_spacing_regular</item>
+    <style name="Body">
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">@dimen/text_spacing_big</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="lineHeight">@dimen/line_height_regular</item>
+    </style>
+
+    <style name="LabelHeader">
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">@dimen/text_spacing_normal</item>
         <item name="android:textColor">@color/light_gray</item>
         <item name="lineHeight">@dimen/line_height_regular</item>
     </style>

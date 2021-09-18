@@ -1,8 +1,8 @@
 package ru.subbotind.android.rates.presentation
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -31,14 +31,19 @@ class RatesViewModel @Inject constructor(
         }
     }
 
-    val rates: LiveData<List<Rate>> = ratesRepository.getDailyRates().asLiveData()
+    private val _rates: MutableLiveData<List<Rate>> = MutableLiveData()
+    val rates: LiveData<List<Rate>> = _rates
 
     private val _errorState: SingleLiveEvent<ErrorState> = SingleLiveEvent()
     val errorState: LiveData<ErrorState> = _errorState
 
     init {
+        fetchRates()
+    }
+
+    fun fetchRates() {
         viewModelScope.launch(exceptionHandler) {
-            ratesRepository.fetchRates()
+            _rates.value = ratesRepository.getDailyRates()
         }
     }
 }

@@ -4,5 +4,6 @@ data class Rate(
     val code: String,
     val nominal: Int,
     val name: String,
-    val value: Double
+    val value: Double,
+    val change: Double
 )

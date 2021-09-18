@@ -12,6 +12,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import ru.subbotind.android.rates.BuildConfig
 import ru.subbotind.android.rates.data.network.interceptor.ServerErrorInterceptor
 import javax.inject.Singleton
 
@@ -35,8 +36,8 @@ object NetworkModule {
     @BaseUrlQualifier
     @Provides
     @Singleton
-//    fun provideBaseUrl(): String = BuildConfig.BASE_URL
-    fun provideBaseUrl(): String = "https://www.cbr-xml-daily.ru/"
+    fun provideBaseUrl(): String = BuildConfig.BASE_URL
+//    fun provideBaseUrl(): String = "https://www.cbr-xml-daily.ru/"
 
     @Provides
     @Singleton

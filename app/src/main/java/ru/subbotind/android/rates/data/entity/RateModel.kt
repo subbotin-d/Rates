@@ -17,5 +17,7 @@ data class RateModel(
     @SerialName("Name")
     val name: String,
     @SerialName("Value")
-    val value: Double
+    val value: Double,
+    @SerialName("Previous")
+    val previous: Double
 )
