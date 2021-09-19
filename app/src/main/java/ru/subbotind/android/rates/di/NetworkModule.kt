@@ -37,7 +37,6 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideBaseUrl(): String = BuildConfig.BASE_URL
-//    fun provideBaseUrl(): String = "https://www.cbr-xml-daily.ru/"
 
     @Provides
     @Singleton
